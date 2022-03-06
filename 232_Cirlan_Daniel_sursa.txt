@@ -1,0 +1,802 @@
+-- 4 & 5
+
+create table PROPRIETAR( 
+    id_proprietar number(4) primary key, 
+    nume varchar2(25) not null, 
+    prenume varchar2(25) not null, 
+    data_nastere date, 
+    ocupatie varchar2(20) 
+) 
+
+insert into proprietar values (10, 'Voicu', 'Ramona', '27-OCT-1996', 'scafandru'); 
+insert into proprietar values (11, 'Breha', 'Alina', '22-SEP-1998', 'doctor'); 
+insert into proprietar values (12, 'Munteanu', 'Robert', '12-SEP-1992', 'inginer'); 
+insert into proprietar values (13, 'Pavlu', 'Miruna', '23-FEB-2001', 'IT-ist'); 
+insert into proprietar values (14, 'Mehmed', 'Koder', '24-JAN-1993', 'antreprenor');
+
+create table AGREMENTIST( 
+    id_agrementist number(5) primary key, 
+    nume varchar2(25) not null, 
+    prenume varchar2(25) not null, 
+    data_nastere date 
+) 
+
+insert into agrementist values (200, 'Nastase', 'Ramon', '23-OCT-2012'); 
+insert into agrementist values (201, 'Onciu', 'Flavius', '12-NOV-2002'); 
+insert into agrementist values (202, 'Barbu', 'Mirel', '03-FEB-1999'); 
+insert into agrementist values (203, 'Florea', 'Bogdan', '29-DEC-2001'); 
+insert into agrementist values (204, 'Cantor', 'Angela', '14-SEP-2004'); 
+insert into agrementist values (205, 'Carp', 'Adrian', null); 
+
+create table ANTRENOR( 
+    id_antrenor number(4) primary key, 
+    nume varchar2(25) not null, 
+    prenume varchar2(25) not null, 
+    data_angajare date, 
+    experienta number(3) 
+) 
+
+insert into antrenor values (50, 'Mirunache', 'Angel', '07-SEP-2000', 14); 
+insert into antrenor values (51, 'Gavrila', 'Ion', '29-OCT-2004', 8); 
+insert into antrenor values (52, 'Antonescu', 'Cristina', '20-NOV-2001', 16);
+insert into antrenor values (53, 'Farches', 'Octavian', '26-DEC-2018', 10); 
+insert into antrenor values (54, 'Botezat', 'Tamara', '02-JUN-2014', 5); 
+insert into antrenor values (55, 'Mirunache', 'Mihaela', '01-OCT-2020', 8);
+insert into antrenor values (56, 'Radulescu', 'Robert', '06-NOV-2000', 12);
+
+create table MANEJ( 
+    id_manej number(3) primary key, 
+    tip_manej varchar2(10) not null, 
+    suprafata_manej number(5) 
+) 
+
+insert into manej values (20, 'obstacole', 200); 
+insert into manej values (21, 'liber', 160); 
+insert into manej values (22, 'hipodrom', 1000); 
+insert into manej values (23, 'galop', 400); 
+insert into manej values (24, 'sarituri', 150); 
+insert into manej values (25, 'galop', 300); 
+insert into manej values (26, 'galop', 1000);
+
+create table MEDIC_VETERINAR( 
+    id_veterinar number(5) primary key, 
+    nume varchar(25) not null, 
+    prenume varchar(25) not null, 
+    clinica_veterinara varchar(25) 
+) 
+
+insert into medic_veterinar values (100, 'Manea', 'Cosmin', 'PRO-Animals'); 
+insert into medic_veterinar values (101, 'Kroner', 'Radu', 'Save-PETS'); 
+insert into medic_veterinar values (102, 'Haidau', 'Elena', 'Nord-Vet'); 
+insert into medic_veterinar values (103, 'Amarie', 'Nicolaie', 'RIO-VET'); 
+insert into medic_veterinar values (104, 'Nedelcu', 'Mihai', 'FanVet'); 
+
+create table BOXA( 
+    id_boxa number(4) primary key, 
+    tip_boxa varchar2(10) 
+) 
+
+insert into boxa values (1, 'mobila'); 
+insert into boxa values (2, 'fixa'); 
+insert into boxa values (3, 'fixa'); 
+insert into boxa values (4, 'mobila'); 
+insert into boxa values (5, 'fixa');
+insert into boxa values (6, 'fixa');
+
+create table INGRIJITOR( 
+    id_ingrijitor number(4) primary key, 
+    nume varchar2(25) not null, 
+    prenume varchar2(25) not null, 
+    data_angajare date 
+) 
+
+insert into ingrijitor values (30, 'Zargan', 'Florin', '23-MAR-2004'); 
+insert into ingrijitor values (31, 'Culea', 'Sebastian', '12-APR-2010'); 
+insert into ingrijitor values (32, 'Golea', 'Matei', '03-FEB-2007'); 
+insert into ingrijitor values (33, 'Marcu', 'Razvan', '13-NOV-2016'); 
+insert into ingrijitor values (34, 'Miron', 'Andrei', '27-AUG-2020'); 
+insert into ingrijitor values (35, 'Narcut', 'Andrei', '18-NOV-2020'); 
+insert into ingrijitor values (36, 'Gabor', 'Mihai', '14-NOV-2020'); 
+
+create table CONCURS( 
+    id_concurs number(4) primary key, 
+    id_antrenor number(4), 
+    nume varchar2(25) not null, 
+    data_concurs date, 
+    oras varchar2(20), 
+    etapa varchar2(20), 
+    tip_concurs varchar2(20) not null, 
+    taxa_participare number(6) 
+); 
+
+alter table concurs 
+add constraint fk_con_ant foreign key(id_antrenor) references antrenor(id_antrenor);
+
+insert into concurs values (1, 50, 'Carpatii sub copite', '23-AUG-2012', 'Brasov', 'nationala', 'tractiune', 500); 
+insert into concurs values (2, 54, 'Equestria', '08-AUG-2020', 'Viena', 'internationala', 'galop', 700); 
+insert into concurs values (3, 51, 'Jockey Club', '23-JUL-2018', 'Sibiu', 'nationala', 'viteza', 550); 
+insert into concurs values (4, 51, 'Equestria', '08-AUG-2020', 'Viena', 'internationala', 'frumusete', 700); 
+insert into concurs values (5, 54, 'Marea Deschidere', '15-JUN-2017', 'Bacau', 'nationala', 'sarituri', 300); 
+insert into concurs values (6, 52, 'Carpatii sub copite', '12-OCT-2019', 'Arad', 'nationala', 'tractiune', null); 
+insert into concurs values (7, 50, 'Equestria beauty', '23-AUG-2016', 'Vaslui', 'nationala', 'frumusete', 1200); 
+
+create table CAL( 
+    id_cal number(4) primary key, 
+    id_proprietar number(4), 
+    id_veterinar number(5), 
+    nume varchar2(25) not null, 
+    rasa varchar2(25), 
+    data_nastere date, 
+    sex varchar2(10) not null 
+) 
+
+alter table cal 
+add constraint fk_prop_cal foreign key(id_proprietar) references proprietar(id_proprietar); 
+
+alter table cal 
+add constraint fk_vet_cal foreign key(id_veterinar) references medic_veterinar(id_veterinar); 
+
+insert into cal values (1, 11, 100, 'Cenai', 'Thoroughbred', '23-SEP-2015', 'femela'); 
+insert into cal values (2, 14, 103, 'Russell', 'Cal Arab', '02-JAN-2001', 'mascul'); 
+insert into cal values (3, 13, 102, 'Kira', 'Frizon','30-DEC-2012', 'femela'); 
+insert into cal values (4, 14, 104, 'Maolo', 'Appaloosa', '19-NOV-2014', 'mascul'); 
+insert into cal values (5, 10, 100, 'Pilak', 'Shire', '27-JUL-2015', 'mascul'); 
+insert into cal values (6, 11, 100, 'Magnus', 'Mustang', '24-OCT-2016', 'mascul');
+insert into cal values (7, 14, 104, 'Magnus', 'Shire', '12-FEB-2014', 'mascul');
+insert into cal values (8, 11, 100, 'Karma', 'Cal arab', '07-DEC-2020', 'femela');
+insert into cal values (9, 10, 102, 'Plado', 'Indian', '29-APR-2019', 'mascul');
+insert into cal values (10, 13, 101, 'Rufy', 'Appaloosa', '23-NOV-2003', 'mascul');
+
+create table ALEGE( 
+    id_antrenor number(4) references antrenor(id_antrenor), 
+    id_manej number(3) references manej(id_manej), 
+    primary key(id_antrenor, id_manej) 
+) 
+
+insert into alege values (50,20);
+insert into alege values (52,23); 
+insert into alege values (54,24); 
+insert into alege values (51,22); 
+insert into alege values (53,20); 
+insert into alege values (53,23); 
+insert into alege values (50,24); 
+insert into alege values (51,20); 
+insert into alege values (52,24); 
+insert into alege values (54,22);	 
+insert into alege values (50,26);
+insert into alege values (51,26);
+
+create table ANTRENEAZA( 
+    id_cal number(4) references cal(id_cal), 
+    id_antrenor number(4) references antrenor(id_antrenor), 
+    primary key(id_cal, id_antrenor) 
+) 
+
+insert into antreneaza values (1,51); 
+insert into antreneaza values (2,54); 
+insert into antreneaza values (3,51); 
+insert into antreneaza values (1,54); 
+insert into antreneaza values (3,54); 
+insert into antreneaza values (4,54); 
+insert into antreneaza values (5,54); 
+insert into antreneaza values (4,51); 
+insert into antreneaza values (2,52); 
+insert into antreneaza values (3,50); 
+
+create table PARTICIPA( 
+    id_cal number(4) references cal(id_cal), 
+    id_concurs number(4) references concurs(id_concurs), 
+    primary key (id_cal, id_concurs) 
+) 
+
+insert into participa values (1,4); 
+insert into participa values (2,3); 
+insert into participa values (3,4); 
+insert into participa values (1,5); 
+insert into participa values (3,2); 
+insert into participa values (4,5); 
+insert into participa values (5,5); 
+insert into participa values (4,4); 
+insert into participa values (1,2); 
+insert into participa values (2,5); 
+
+create table CALARESTE( 
+    id_cal number(4) references cal(id_cal), 
+    id_agrementist number(5) references agrementist(id_agrementist) on delete cascade, 
+    primary key (id_cal, id_agrementist) 
+) 
+
+insert into calareste values (1,200); 
+insert into calareste values (2,204); 
+insert into calareste values (3,200); 
+insert into calareste values (4,201);
+insert into calareste values (5,203); 
+insert into calareste values (1,203); 
+insert into calareste values (5,202); 
+insert into calareste values (4,200); 
+insert into calareste values (5,201); 
+insert into calareste values (3,202); 
+insert into calareste values (4,205); 
+
+create table INGRIJESTE( 
+    id_cal number(4) references cal(id_cal), 
+    id_ingrijitor number(4) references ingrijitor(id_ingrijitor), 
+    id_boxa number(4) references boxa(id_boxa), 
+    primary key(id_cal, id_ingrijitor, id_boxa) 
+) 
+
+insert into ingrijeste values (1,32,2); 
+insert into ingrijeste values (2,33,3); 
+insert into ingrijeste values (3,34,1); 
+insert into ingrijeste values (4,31,4); 
+insert into ingrijeste values (5,30,5); 
+insert into ingrijeste values (1,33,2); 
+insert into ingrijeste values (2,30,3); 
+insert into ingrijeste values (3,31,1); 
+insert into ingrijeste values (4,34,4); 
+insert into ingrijeste values (5,34,5); 
+insert into ingrijeste values (6,32,6); 
+
+-- 6. Cerinta propusa: 
+-- Pentru fiecare antrenor din tabelul ANTRENOR, 
+-- afisati lista cailor (id-ul calului si numele) pe care ii antreneaza 
+-- pentru a participa la concurs.
+
+set serveroutput on;
+
+create or replace procedure ex6 
+is
+    type tabel_antrenori is table of antrenor%ROWTYPE;
+    t_antrenori tabel_antrenori := tabel_antrenori();
+    
+    type tabel_cai is table of cal%rowtype index by pls_integer;
+    t_cai tabel_cai;
+begin
+    select distinct ant.id_antrenor, ant.nume, ant.prenume, ant.data_angajare, ant.experienta
+    bulk collect into t_antrenori
+    from antrenor ant, concurs co
+    where ant.id_antrenor = co.id_antrenor;
+    
+    for i in t_antrenori.first..t_antrenori.last loop
+        
+        dbms_output.put_line('Id antrenor: ' || t_antrenori(i).id_antrenor || ' --- ' 
+                            || ' Nume antrenor: ' || t_antrenori(i).nume || ' ' 
+                            || t_antrenori(i).prenume);
+        dbms_output.put_line(' ');
+        
+        select distinct c.id_cal, c.id_proprietar, c.id_veterinar, c.nume, c.rasa, c.data_nastere, c.sex
+        bulk collect into t_cai
+        from cal c, participa p, concurs co
+        where c.id_cal = p.id_cal and 
+              p.id_concurs = co.id_concurs and 
+              co.id_antrenor = t_antrenori(i).id_antrenor;    
+    
+        if t_cai.count > 0 then 
+            for i in t_cai.first..t_cai.last loop
+                dbms_output.put_line('Id cal: ' || t_cai(i).id_cal 
+                                    || ' -> Nume cal: ' || t_cai(i).nume);
+            end loop;
+            t_cai.delete;    
+        else
+            dbms_output.put_line('Nu antreneaza niciun cal.');
+        end if;
+        dbms_output.put_line(' ');
+    end loop;
+end ex6;
+/
+
+execute ex6;
+
+-- 7. Cerinta propusa:
+-- Pentru fiecare cal existent in tabel, 
+-- specificati numarul de agrementisti care l-au calarit.
+
+create or replace procedure ex7
+is
+    type t_nume_cai is table of cal.nume%type;
+    type t_numar_calareti is table of number;
+    v_nume t_nume_cai;
+    v_numar t_numar_calareti;
+    cursor curs is
+        select c.nume nume_cal, count(agr.id_agrementist) numar_calareti
+        from cal c, calareste calar, agrementist agr
+        where calar.id_cal = c.id_cal and calar.id_agrementist = agr.id_agrementist
+        group by c.nume;
+begin
+    open curs;
+    fetch curs bulk collect into v_nume, v_numar; 
+    close curs; 
+    
+    for i in v_nume.first..v_nume.last loop
+        if v_numar(i) = 0 then
+            DBMS_OUTPUT.PUT_LINE('Calul ' || v_nume(i) 
+                                 || ' nu a fost calarit inca de niciun agrementist.');
+        elsif v_numar(i) = 1 then
+            DBMS_OUTPUT.PUT_LINE('Calul ' || v_nume(i) 
+                                || ' a fost calarit de un singur agrementist.');
+        else
+            DBMS_OUTPUT.PUT_LINE('Calul ' || v_nume(i) || ' a fost calarit de ' 
+                                || v_numar(i) || ' agrementisti.' );
+        end if;
+    end loop;
+end ex7;
+/
+
+execute ex7;
+
+-- 8. Cerinta propusa:
+-- Pentru un cal cu numele specificat, sa se gaseasca unicul ingrijitor al acestuia. 
+-- Se vor evidentia toate cazurile tratate. Rezolvarea va trebui sa foloseasca un subprogram 
+-- stocat de tip functie care sa utilizeze 
+-- intr-o singura comanda SQL 3 dintre tabelele definite.
+
+create or replace function ex8
+    (v_nume cal.nume%type)
+return varchar2 
+is
+    v_nume_ingrijitor varchar2(30) := null;
+    v_prenume_ingrijitor varchar2(30) := null;
+    v_id number := null;
+    begin    
+        select id_cal into v_id
+        from cal
+        where upper(v_nume) = upper(nume);
+        
+        select ing.nume, ing.prenume into v_nume_ingrijitor, v_prenume_ingrijitor
+        from ingrijitor ing, ingrijeste ingrij, cal c
+        where upper(c.nume) = upper(v_nume) and c.id_cal = ingrij.id_cal and ingrij.id_ingrijitor = ing.id_ingrijitor;
+    
+        return 'Unicul ingrijitor al calului cu numele ' || v_nume 
+                || ' este ' || v_nume_ingrijitor || ' ' || v_prenume_ingrijitor || '.';
+    exception
+        when no_data_found then
+            if v_id is null then
+                return 'Calul cu numele ' || v_nume || ' nu a fost inregistrat.';
+            end if;
+            if v_nume_ingrijitor is null then
+                return 'Nu sunt ingrijitori pentru calul cu numele ' || v_nume || '.';
+            end if;
+        when too_many_rows then
+            if v_nume_ingrijitor is not null then
+                return 'Sunt mai multi ingrijitori pentru calul cu numele ' || v_nume || '.';
+            end if;
+            if v_id is not null then
+                return 'Sunt mai multi cai cu numele ' || v_nume || '.';
+            end if;
+        when others then
+            return 'Alta eroare';
+end ex8;
+/
+
+begin
+    dbms_output.put_line(ex8('Karma'));
+    dbms_output.put_line(ex8('Cenai'));
+    dbms_output.put_line(ex8('Magnus'));
+    dbms_output.put_line(ex8('Pluto'));
+    dbms_output.put_line(ex8('Rufy'));
+end;
+/
+
+-- 9. Cerinta propusa:
+-- Pentru un antrenor cu numele dat ca parametru unui subprogram stocat de tip 
+-- procedură, sa se afiseze toti caii pe care ii antreneaza, id-ul manejului unde sunt antrenati 
+-- si aria acestuia, specificandu-se daca antrenamentele au loc si pe hipodrom sau inca nu. 
+-- Sa se foloseasca intr-o singură comandă SQL 5 dintre tabelele definite
+-- si sa se evidentieze toate cazurile tratate, incluzand excepțiile NO_DATA_FOUND și TOO_MANY_ROWS.
+
+create or replace procedure ex9
+    (v_nume_ant antrenor.nume%type)
+is
+    v_id_ant antrenor.id_antrenor%type;
+    type info is record(
+        nume_antrenor antrenor.nume%type,
+        prenume_antrenor antrenor.prenume%type,
+        nume_cal cal.nume%type,
+        v_id_manej manej.id_manej%type,
+        v_suprafata manej.suprafata_manej%type);
+    type t_tablou is table of info index by pls_integer;
+    v_tablou t_tablou;
+    exceptie exception;
+    v_tip_manej manej.tip_manej%type;
+    nr number := 0;
+begin
+    select id_antrenor into v_id_ant
+    from antrenor
+    where upper(v_nume_ant) = upper(nume);
+    
+    select ant.nume, ant.prenume, c.nume, m.id_manej, m.suprafata_manej
+    bulk collect into v_tablou
+    from manej m, alege a, antrenor ant, antreneaza antren, cal c
+    where upper(v_nume_ant) = upper(ant.nume) and
+        m.id_manej = a.id_manej and
+        a.id_antrenor = ant.id_antrenor and
+        ant.id_antrenor = antren.id_antrenor and
+        antren.id_cal = c.id_cal;
+
+    if v_tablou.count = 0 then
+        v_id_ant := -1;
+        raise no_data_found;
+    else
+        for i in v_tablou.first..v_tablou.last loop
+            dbms_output.put_line(v_tablou(i).nume_antrenor || ' ' 
+                                || v_tablou(i).prenume_antrenor 
+                                || ' antreneaza calul '
+                                || v_tablou(i).nume_cal || ' la manejul cu id-ul ' 
+                                || v_tablou(i).v_id_manej || ' cu suprafata de ' 
+                                || v_tablou(i).v_suprafata || ' metri patrati.');
+         end loop;
+         
+         for i in v_tablou.first..v_tablou.last loop
+            select tip_manej into v_tip_manej
+            from manej
+            where id_manej = v_tablou(i).v_id_manej;
+            
+            if lower(v_tip_manej) = 'hipodrom' then
+                nr := nr + 1;
+            end if;
+        end loop;
+        
+        if nr = 0 then 
+            raise exceptie;
+        else
+            dbms_output.put_line(' -> Caii sunt antrenati si pe hipodrom.');
+        end if;
+    end if;
+exception
+    when no_data_found then
+        if v_id_ant is null then
+            dbms_output.put_line('Nu exista antrenorul cu numele ' || v_nume_ant || '.');
+        else 
+            dbms_output.put_line('Antrenorul cu numele ' || v_nume_ant 
+            || ' nu antreneaza niciun cal din herghelie.');
+        end if;
+    when too_many_rows then
+        dbms_output.put_line('Sunt mai multi antrenori cu numele ' || v_nume_ant || '.');
+    when exceptie then 
+        dbms_output.put_line(' -> Caii nu sunt antrenati inca pe hipodrom.');
+end ex9;
+/
+
+begin
+    dbms_output.put_line(' -- Test 1: ');
+    ex9('Radulescu');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 2: ');
+    ex9('Gavrila');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 3: ');
+    ex9('Mirunache');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 4: ');
+    ex9('Filip');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 5: ');
+    ex9('Antonescu');  
+end;
+/
+
+-- 10. Definiți un trigger de tip LMD la nivel de comandă. Declanșați trigger-ul.
+-- Trigger-ul se va declansa la inserarea unui cal in tabela CAL atunci cand 
+-- numarul boxelor nu permite tinerea calului in herghelie. Se considera ca 
+-- intr-o boxa incap maxim 4 cai.
+
+create or replace trigger trigger10
+    before insert on cal
+declare
+    nr_cai number;
+    nr_boxe number;
+    exceptie exception;
+begin
+    select count(*) into nr_cai
+    from cal;
+    
+    select count(*) into nr_boxe
+    from boxa;
+    
+    if nr_cai > 4 * nr_boxe then
+        raise exceptie;
+    end if;
+exception
+    when exceptie then 
+        raise_application_error(-20000, 'Nu mai sunt locuri in boxe pentru cai.');
+end trigger10;
+/
+
+insert into cal values (10, 10, 102, 'Plado', 'Indian', '29-APR-19', 'mascul');
+
+drop trigger trigger10;
+
+-- 11. Definiți un trigger de tip LMD la nivel de linie. Declanșați trigger-ul.
+-- Trigger-ul se va declansa la modificarea suprafetei manejului atunci cand
+-- caii antrenati la cel putin un manej nu vor avea o arie minima de desfasurare
+-- de 30 de metri patrati fiecare.
+
+create or replace trigger trigger11
+    before update of suprafata_manej on manej
+    for each row
+declare 
+    numar_cai_antr number;
+    supra_min_per_cal number := 30; -- 30 m^2
+    exceptie exception;
+begin
+    select count(id_manej)
+    into numar_cai_antr
+    from alege
+    where id_manej = :old.id_manej;
+    
+    if :new.suprafata_manej < supra_min_per_cal * numar_cai_antr then
+        raise exceptie;
+    end if;
+
+exception
+    when exceptie then
+        raise_application_error(-20001, 'Nu se pot face modificari la ariile manejelor.');
+end trigger11;
+/
+
+update manej
+set suprafata_manej = suprafata_manej - 70;
+
+drop trigger trigger11;
+
+--12. Definiți un trigger de tip LDD. Declanșați trigger-ul.
+
+create table schema_audit(
+    data date,
+    utilizator varchar2(15),
+    obiect_creat varchar2(15),
+    nume_obiect varchar2(15),
+    operatie varchar2(15)
+    );
+
+create or replace trigger trigger12
+after ddl on schema
+begin
+    insert into schema_audit values(
+        sysdate,
+        sys_context('USERENV','CURRENT_USER'),
+        ora_dict_obj_type,
+        ora_dict_obj_name,
+        ora_sysevent
+    );
+end trigger12;
+/
+
+create table club_echitatie( nume_club varchar2(30));
+
+insert into club_echitatie values('Club1');
+insert into club_echitatie values('Club2');
+
+truncate table club_echitatie;
+drop table club_echitatie;
+
+select * from schema_audit;
+
+drop trigger trigger12;
+
+--13. Definiți un pachet care să conțină toate obiectele definite în cadrul proiectului.
+
+create or replace package pachet13 as
+    -------
+    procedure ex6;
+    procedure ex7;
+    function ex8 (v_nume cal.nume%type) return varchar2;
+    procedure ex9 (v_nume_ant antrenor.nume%type);
+    -------
+end pachet13;
+
+create or replace package body pachet13 as
+    -------
+    procedure ex6 
+    is
+        type tabel_antrenori is table of antrenor%ROWTYPE;
+        t_antrenori tabel_antrenori := tabel_antrenori();
+        
+        type tabel_cai is table of cal%rowtype index by pls_integer;
+        t_cai tabel_cai;
+    begin
+        select distinct ant.id_antrenor, ant.nume, ant.prenume, ant.data_angajare, ant.experienta
+        bulk collect into t_antrenori
+        from antrenor ant, concurs co
+        where ant.id_antrenor = co.id_antrenor;
+        
+        for i in t_antrenori.first..t_antrenori.last loop
+            
+            dbms_output.put_line('Id antrenor: ' || t_antrenori(i).id_antrenor || ' --- ' 
+                                || ' Nume antrenor: ' || t_antrenori(i).nume || ' ' 
+                                || t_antrenori(i).prenume);
+            dbms_output.put_line(' ');
+            
+            select distinct c.id_cal, c.id_proprietar, c.id_veterinar, c.nume, c.rasa, c.data_nastere, c.sex
+            bulk collect into t_cai
+            from cal c, participa p, concurs co
+            where c.id_cal = p.id_cal and 
+                  p.id_concurs = co.id_concurs and 
+                  co.id_antrenor = t_antrenori(i).id_antrenor;    
+        
+            if t_cai.count > 0 then 
+                for i in t_cai.first..t_cai.last loop
+                    dbms_output.put_line('Id cal: ' || t_cai(i).id_cal 
+                                        || ' -> Nume cal: ' || t_cai(i).nume);
+                end loop;
+                t_cai.delete;    
+            else
+                dbms_output.put_line('Nu antreneaza niciun cal.');
+            end if;
+            dbms_output.put_line(' ');
+        end loop;
+    end ex6;
+    -------
+    procedure ex7
+    is
+        type t_nume_cai is table of cal.nume%type;
+        type t_numar_calareti is table of number;
+        v_nume t_nume_cai;
+        v_numar t_numar_calareti;
+        cursor curs is
+            select c.nume nume_cal, count(agr.id_agrementist) numar_calareti
+            from cal c, calareste calar, agrementist agr
+            where calar.id_cal = c.id_cal and calar.id_agrementist = agr.id_agrementist
+            group by c.nume;
+    begin
+        open curs;
+        fetch curs bulk collect into v_nume, v_numar; 
+        close curs; 
+        
+        for i in v_nume.first..v_nume.last loop
+            if v_numar(i) = 0 then
+                DBMS_OUTPUT.PUT_LINE('Calul ' || v_nume(i) 
+                                     || ' nu a fost calarit inca de niciun agrementist.');
+            elsif v_numar(i) = 1 then
+                DBMS_OUTPUT.PUT_LINE('Calul ' || v_nume(i) 
+                                    || ' a fost calarit de un singur agrementist.');
+            else
+                DBMS_OUTPUT.PUT_LINE('Calul ' || v_nume(i) || ' a fost calarit de ' 
+                                    || v_numar(i) || ' agrementisti.' );
+            end if;
+        end loop;
+    end ex7;
+    -------
+    function ex8
+        (v_nume cal.nume%type)
+    return varchar2 
+    is
+        v_nume_ingrijitor varchar2(30) := null;
+        v_prenume_ingrijitor varchar2(30) := null;
+        v_id number := null;
+        begin    
+            select id_cal into v_id
+            from cal
+            where upper(v_nume) = upper(nume);
+            
+            select ing.nume, ing.prenume into v_nume_ingrijitor, v_prenume_ingrijitor
+            from ingrijitor ing, ingrijeste ingrij, cal c
+            where upper(c.nume) = upper(v_nume) and c.id_cal = ingrij.id_cal and ingrij.id_ingrijitor = ing.id_ingrijitor;
+        
+            return 'Unicul ingrijitor al calului cu numele ' || v_nume 
+                    || ' este ' || v_nume_ingrijitor || ' ' || v_prenume_ingrijitor || '.';
+        exception
+            when no_data_found then
+                if v_id is null then
+                    return 'Calul cu numele ' || v_nume || ' nu a fost inregistrat.';
+                end if;
+                if v_nume_ingrijitor is null then
+                    return 'Nu sunt ingrijitori pentru calul cu numele ' || v_nume || '.';
+                end if;
+            when too_many_rows then
+                if v_nume_ingrijitor is not null then
+                    return 'Sunt mai multi ingrijitori pentru calul cu numele ' || v_nume || '.';
+                end if;
+                if v_id is not null then
+                    return 'Sunt mai multi cai cu numele ' || v_nume || '.';
+                end if;
+            when others then
+                return 'Alta eroare';
+    end ex8;
+    -------
+    procedure ex9
+        (v_nume_ant antrenor.nume%type)
+    is
+        v_id_ant antrenor.id_antrenor%type;
+        type info is record(
+            nume_antrenor antrenor.nume%type,
+            prenume_antrenor antrenor.prenume%type,
+            nume_cal cal.nume%type,
+            v_id_manej manej.id_manej%type,
+            v_suprafata manej.suprafata_manej%type);
+        type t_tablou is table of info index by pls_integer;
+        v_tablou t_tablou;
+        exceptie exception;
+        v_tip_manej manej.tip_manej%type;
+        nr number := 0;
+    begin
+        select id_antrenor into v_id_ant
+        from antrenor
+        where upper(v_nume_ant) = upper(nume);
+        
+        select ant.nume, ant.prenume, c.nume, m.id_manej, m.suprafata_manej
+        bulk collect into v_tablou
+        from manej m, alege a, antrenor ant, antreneaza antren, cal c
+        where upper(v_nume_ant) = upper(ant.nume) and
+            m.id_manej = a.id_manej and
+            a.id_antrenor = ant.id_antrenor and
+            ant.id_antrenor = antren.id_antrenor and
+            antren.id_cal = c.id_cal;
+    
+        if v_tablou.count = 0 then
+            v_id_ant := -1;
+            raise no_data_found;
+        else
+            for i in v_tablou.first..v_tablou.last loop
+                dbms_output.put_line(v_tablou(i).nume_antrenor || ' ' 
+                                    || v_tablou(i).prenume_antrenor 
+                                    || ' antreneaza calul '
+                                    || v_tablou(i).nume_cal || ' la manejul cu id-ul ' 
+                                    || v_tablou(i).v_id_manej || ' cu suprafata de ' 
+                                    || v_tablou(i).v_suprafata || ' metri patrati.');
+             end loop;
+             
+             for i in v_tablou.first..v_tablou.last loop
+                select tip_manej into v_tip_manej
+                from manej
+                where id_manej = v_tablou(i).v_id_manej;
+                
+                if lower(v_tip_manej) = 'hipodrom' then
+                    nr := nr + 1;
+                end if;
+            end loop;
+            
+            if nr = 0 then 
+                raise exceptie;
+            else
+                dbms_output.put_line(' -> Caii sunt antrenati si pe hipodrom.');
+            end if;
+        end if;
+    exception
+        when no_data_found then
+            if v_id_ant is null then
+                dbms_output.put_line('Nu exista antrenorul cu numele ' || v_nume_ant || '.');
+            else 
+                dbms_output.put_line('Antrenorul cu numele ' || v_nume_ant || ' nu antreneaza niciun cal din herghelie.');
+            end if;
+        when too_many_rows then
+            dbms_output.put_line('Sunt mai multi antrenori cu numele ' || v_nume_ant || '.');
+        when exceptie then 
+            dbms_output.put_line(' -> Caii nu sunt antrenati inca pe hipodrom.');
+    end ex9;
+    -------
+end pachet13;
+
+
+begin 
+    dbms_output.put_line('EX6: ');
+    pachet13.ex6;
+    dbms_output.put_line('EX7: ');
+    dbms_output.put_line(' ');
+    pachet13.ex7;
+    dbms_output.put_line(' ');
+    dbms_output.put_line('EX8: ');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(pachet13.ex8('Karma'));
+    dbms_output.put_line(pachet13.ex8('Cenai'));
+    dbms_output.put_line(pachet13.ex8('Magnus'));
+    dbms_output.put_line(pachet13.ex8('Pluto'));
+    dbms_output.put_line(pachet13.ex8('Rufy'));
+    dbms_output.put_line(' ');
+    dbms_output.put_line('EX9: ');
+    dbms_output.put_line(' -- Test 1: ');
+    pachet13.ex9('Radulescu');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 2: ');
+    pachet13.ex9('Gavrila');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 3: ');
+    pachet13.ex9('Mirunache');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 4: ');
+    pachet13.ex9('Filip');
+    dbms_output.put_line(' ');
+    dbms_output.put_line(' -- Test 5: ');
+    pachet13.ex9('Antonescu');  
+end;
+/
