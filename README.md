@@ -15,7 +15,7 @@ PL/SQL was used to:
 
 Project Requirements:
 
-'1. Prezentați pe scurt baza de date (utilitatea ei).
+1. Prezentați pe scurt baza de date (utilitatea ei).
 2. Realizați diagrama entitate-relație (ERD).
 3. Pornind de la diagrama entitate-relație realizați diagrama conceptuală a modelului propus, integrând
 toate atributele necesare.
@@ -39,4 +39,4 @@ subprogramul astfel încât să evidențiați toate cazurile tratate.
 12. Definiți un trigger de tip LDD. Declanșați trigger-ul.
 13. Definiți un pachet care să conțină toate obiectele definite în cadrul proiectului.
 14. Definiți un pachet care să includă tipuri de date complexe și obiecte necesare unui flux de acțiuni
-integrate, specifice bazei de date definite (minim 2 tipuri de date, minim 2 funcții, minim 2 proceduri).'
+integrate, specifice bazei de date definite (minim 2 tipuri de date, minim 2 funcții, minim 2 proceduri).
