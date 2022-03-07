@@ -13,7 +13,8 @@ PL/SQL was used to:
  * Support for Object-Oriented Programming
  * to make the idea of solving easier to understand
 
-Project Requirements:
+```
+Cerintele proiectului:
 
 1. Prezentați pe scurt baza de date (utilitatea ei).
 2. Realizați diagrama entitate-relație (ERD).
@@ -40,3 +41,4 @@ subprogramul astfel încât să evidențiați toate cazurile tratate.
 13. Definiți un pachet care să conțină toate obiectele definite în cadrul proiectului.
 14. Definiți un pachet care să includă tipuri de date complexe și obiecte necesare unui flux de acțiuni
 integrate, specifice bazei de date definite (minim 2 tipuri de date, minim 2 funcții, minim 2 proceduri).
+```
