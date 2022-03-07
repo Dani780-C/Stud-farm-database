@@ -10,7 +10,6 @@ SQL was used to:
  
 PL/SQL was used to:
  * create all basic and advanced queries
- * Support for Object-Oriented Programming
  * to make the idea of solving easier to understand
 
 ```
